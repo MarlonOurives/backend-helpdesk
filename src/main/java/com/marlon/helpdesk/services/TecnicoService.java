@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.marlon.helpdesk.domain.Tecnico;
+import com.marlon.helpdesk.domain.dtos.TecnicoDTO;
 import com.marlon.helpdesk.repositories.TecnicoRepository;
 import com.marlon.helpdesk.services.exceptions.ObjectNotFoundException;
 
@@ -24,6 +25,13 @@ public class TecnicoService {
 
 	public List<Tecnico> findAll() {
 		return repository.findAll();
+	}
+
+	public Tecnico create(TecnicoDTO objDTO) {
+		objDTO.setId(null);
+		Tecnico newObj = new Tecnico(objDTO);
+		return repository.save(newObj);
+		
 	}
 
 }
